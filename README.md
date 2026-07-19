@@ -1,10 +1,10 @@
-# FPGA Maze Solver (DFS Algorithm) 🤖
+# FPGA Maze Solver (DFS Algorithm) 
 
 This repository contains the core pathfinding logic for an autonomous maze-solving robot, designed for the **e-Yantra Robotics Competition (eYRC)**. 
 
 The project implements a hardware-optimized **Depth-First Search (DFS)** algorithm using a custom Finite State Machine (FSM) written in Verilog. It was synthesized and verified for the **Intel/Altera Cyclone IV FPGA**.
 
-## 🧠 How It Works
+##  How It Works
 
 The FSM operates in two distinct phases to navigate a 9x9 physical grid:
 
@@ -17,7 +17,7 @@ The FSM operates in two distinct phases to navigate a 9x9 physical grid:
    * Once the bot has fully mapped the maze and returned to the start, it enters a high-speed execution phase.
    * It reads the saved optimal path from memory and dashes straight to the exit without needing to poll sensors for dead ends.
 
-## ⚡ Hardware Optimizations
+##  Hardware Optimizations
 
 Translating software algorithms into RTL requires strict attention to hardware constraints. This module features several key architectural optimizations:
 
@@ -26,7 +26,7 @@ Translating software algorithms into RTL requires strict attention to hardware c
 * **Block RAM (M9K/MLAB) Inference:** Refactored the backtrack stack and path arrays by removing asynchronous resets, successfully forcing the Quartus synthesizer to infer dedicated Distributed RAM instead of discrete logic flip-flops.
 * **Dead-Code Elimination:** Optimized out 512 bits of "ghost data" by realizing absolute coordinates were unnecessary during the sensorless speed-run phase.
 
-## 📊 Synthesis & Resource Utilization
+##  Synthesis & Resource Utilization
 
 The module maintains a highly efficient logic footprint, leaving plenty of room on the FPGA for motor drivers and sensor integration.
 
